@@ -1,29 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiTypescript,
-  SiMysql,
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiTailwindcss,
-  SiMui,
-  SiMongodb,
-  SiGit,
-  SiPostman,
-  SiVercel,
-  SiFirebase,
-  SiLinux,
-} from "react-icons/si";
-import { TbCompass } from "react-icons/tb";
-import { BiTestTube } from "react-icons/bi";
-import { AiOutlineEdit } from "react-icons/ai";
-import { FaJava } from "react-icons/fa";
-import UpcomingCard from "./common/upcoming-card";
+import { SiReact } from "react-icons/si";
+import { skills } from "./common/dummy";
+import SimpleRippleCard from "./common/smart-indicator-card";
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,44 +47,6 @@ export default function Skills() {
     };
   }, []);
 
-  const skills: Record<
-    string,
-    { name: string; Icon: React.ComponentType<any> }[]
-  > = {
-    Languages: [
-      { name: "HTML", Icon: SiHtml5 },
-      { name: "CSS", Icon: SiCss3 },
-      { name: "JavaScript", Icon: SiJavascript },
-      { name: "TypeScript", Icon: SiTypescript },
-      { name: "Java", Icon: FaJava },
-      { name: "SQL", Icon: SiMysql },
-    ],
-    Frameworks: [
-      { name: "React.js", Icon: SiReact },
-      { name: "Node.js", Icon: SiNodedotjs },
-      { name: "Express", Icon: SiExpress },
-      { name: "Tailwind CSS", Icon: SiTailwindcss },
-      { name: "Material UI", Icon: SiMui },
-      { name: "MongoDB", Icon: SiMongodb },
-    ],
-    "QA Testing": [
-      { name: "Manual Testing", Icon: AiOutlineEdit },
-      { name: "Smoke & Regression", Icon: BiTestTube },
-      { name: "Compatibility", Icon: TbCompass },
-      { name: "Exploratory", Icon: BiTestTube },
-      { name: "Usability", Icon: AiOutlineEdit },
-      { name: "Test Case Design", Icon: AiOutlineEdit },
-    ],
-    Tools: [
-      { name: "Git", Icon: SiGit },
-      { name: "Postman", Icon: SiPostman },
-      { name: "Vercel", Icon: SiVercel },
-      { name: "Firebase", Icon: SiFirebase },
-      { name: "Linux", Icon: SiLinux },
-      { name: "MongoDB Compass", Icon: TbCompass },
-    ],
-  };
-
   return (
     <section id="skills" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -115,6 +57,11 @@ export default function Skills() {
         >
           Skills & Expertise
         </h2>
+        <SimpleRippleCard
+          title="Upcoming Projects"
+          description="Tap to see what’s coming next"
+          id="projects"
+        />
 
         {/* MOBILE */}
         <div className="lg:hidden snap-y snap-mandatory h-screen overflow-y-scroll scrollbar-none">
@@ -163,13 +110,6 @@ export default function Skills() {
                     })}
                   </ul>
                 </div>
-
-                {/* Upcoming Card */}
-                <UpcomingCard
-                  title="Upcoming"
-                  buttonText="Upcoming Projects"
-                  targetId="projects"
-                />
               </div>
             );
           })}
