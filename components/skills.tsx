@@ -22,13 +22,11 @@ import {
 import { TbCompass } from "react-icons/tb";
 import { BiTestTube } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
-import { FaJava } from "react-icons/fa"; // <-- Java icon that works
+import { FaJava } from "react-icons/fa";
+import UpcomingCard from "./common/upcoming-card";
 
 export default function Skills() {
-  // Section-level visibility (title & desktop cards)
   const [isVisible, setIsVisible] = useState(false);
-
-  // Per-mobile-slide visibility map: { 'slide-0': true, 'slide-1': false, ... }
   const [visibleSlides, setVisibleSlides] = useState<Record<string, boolean>>(
     {}
   );
@@ -37,7 +35,6 @@ export default function Skills() {
     const section = document.getElementById("skills");
     if (!section) return;
 
-    // observer for section (title / desktop)
     const sectionObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
@@ -46,7 +43,6 @@ export default function Skills() {
     );
     sectionObserver.observe(section);
 
-    // observer for mobile slides inside #skills
     const slideObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -71,7 +67,6 @@ export default function Skills() {
     };
   }, []);
 
-  // skill data (names + icon components)
   const skills: Record<
     string,
     { name: string; Icon: React.ComponentType<any> }[]
@@ -81,7 +76,7 @@ export default function Skills() {
       { name: "CSS", Icon: SiCss3 },
       { name: "JavaScript", Icon: SiJavascript },
       { name: "TypeScript", Icon: SiTypescript },
-      { name: "Java", Icon: FaJava }, // <-- fixed to FaJava
+      { name: "Java", Icon: FaJava },
       { name: "SQL", Icon: SiMysql },
     ],
     Frameworks: [
@@ -111,9 +106,8 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-40 px-4">
+    <section id="skills" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Title */}
         <h2
           className={`text-4xl font-bold mb-12 text-center transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -122,9 +116,8 @@ export default function Skills() {
           Skills & Expertise
         </h2>
 
-        {/* MOBILE: Snap slides — one category per full-screen, slides in from right */}
-        {/* MOBILE: Snap slides — right-to-left animation */}
-        <div className="lg:hidden snap-y snap-mandatory h-screen overflow-y-scroll">
+        {/* MOBILE */}
+        <div className="lg:hidden snap-y snap-mandatory h-screen overflow-y-scroll scrollbar-none">
           {Object.entries(skills).map(([category, items], idx) => {
             const slideId = `slide-${idx}`;
             const shown = !!visibleSlides[slideId];
@@ -135,24 +128,21 @@ export default function Skills() {
                 data-slide-id={slideId}
                 className="mobile-slide snap-start h-screen flex flex-col justify-start items-center px-4 pt-10"
               >
-                {/* Slide Number */}
+                <h3 className="text-left w-full font-semibold text-xl text-orange-500 mb-4">
+                  {category}
+                </h3>
                 <div className="text-orange-500 font-semibold mb-3 text-sm">
                   {idx + 1} / {Object.keys(skills).length}
                 </div>
 
-                {/* Card */}
                 <div
-                  className={`w-full max-w-xl p-5 rounded-xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-md transform transition-all duration-700
-            ${shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-24"}
-          `}
+                  className={`w-full max-w-xl p-5 rounded-xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-md transform transition-all duration-700 ${
+                    shown
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 translate-x-24"
+                  }`}
                   style={{ transitionDelay: `${idx * 120}ms` }}
                 >
-                  {/* Category Title */}
-                  <h3 className="text-center font-semibold text-xl text-orange-500 mb-4">
-                    {category}
-                  </h3>
-
-                  {/* Skills grid */}
                   <ul className="grid grid-cols-2 gap-3">
                     {items.map((skill, sidx) => {
                       const Icon = skill.Icon;
@@ -165,7 +155,6 @@ export default function Skills() {
                           <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-orange-400/10 to-cyan-400/10 text-lg text-orange-500">
                             <Icon />
                           </div>
-
                           <span className="font-medium text-xs">
                             {skill.name}
                           </span>
@@ -174,46 +163,40 @@ export default function Skills() {
                     })}
                   </ul>
                 </div>
+
+                {/* Upcoming Card */}
+                <UpcomingCard
+                  title="Upcoming"
+                  buttonText="Upcoming Projects"
+                  targetId="projects"
+                />
               </div>
             );
           })}
         </div>
 
-        {/* DESKTOP: Same design as Project cards */}
+        {/* DESKTOP */}
         <div className="hidden lg:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {Object.entries(skills).map(([category, items], idx) => {
-            // show first item's icon inside the big gradient box (like project cards)
             const FirstIcon = items[0]?.Icon || SiReact;
-
             return (
               <div
                 key={category}
-                className={`p-6 bg-background rounded-xl border border-border/50 hover:border-orange-500 
-                transition-all duration-500 hover:shadow-xl hover:-translate-y-2
-                ${
+                className={`p-6 bg-background rounded-xl border border-border/50 hover:border-orange-500 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
-                }
-              `}
+                }`}
                 style={{ transitionDelay: `${idx * 120}ms` }}
               >
-                {/* ICON BOX */}
-                <div
-                  className="h-32 bg-gradient-to-br from-orange-400/20 to-cyan-400/20 
-                  rounded-lg mb-4 flex items-center justify-center"
-                >
+                <div className="h-32 bg-gradient-to-br from-orange-400/20 to-cyan-400/20 rounded-lg mb-4 flex items-center justify-center">
                   <div className="text-5xl text-orange-500">
                     <FirstIcon />
                   </div>
                 </div>
-
-                {/* Title */}
                 <h3 className="font-bold text-lg mb-3 group-hover:text-orange-500">
                   {category}
                 </h3>
-
-                {/* Skills */}
                 <ul className="space-y-3">
                   {items.map((skill) => {
                     const Icon = skill.Icon;
