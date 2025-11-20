@@ -5,8 +5,9 @@ import { experiences } from "./common/dummy";
 
 export default function Experience() {
   const [lineHeight, setLineHeight] = useState(0);
-  const itemRefs = useRef<HTMLDivElement[]>([]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Scroll-based timeline animation
   useEffect(() => {
     const section = document.getElementById("experience");
     if (!section) return;
@@ -16,13 +17,13 @@ export default function Experience() {
       if (!experiencesNodes.length) return;
 
       const lastItem = experiencesNodes[experiencesNodes.length - 1];
-      const lastItemBottom = lastItem.getBoundingClientRect().bottom;
+      const lastItemBottom = lastItem?.getBoundingClientRect().bottom ?? 0;
+      const sectionTop = section.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
 
-      // Calculate progress: from top of section to bottom of last item
+      // Calculate progress from top of section to bottom of last experience
       let progress =
-        (windowHeight - section.getBoundingClientRect().top) /
-        (lastItemBottom - section.getBoundingClientRect().top);
+        (windowHeight - sectionTop) / (lastItemBottom - sectionTop);
       progress = Math.min(Math.max(progress, 0), 1);
 
       setLineHeight(progress * 100);
@@ -34,7 +35,7 @@ export default function Experience() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver for mobile animations
+  // IntersectionObserver for fade-in animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -81,7 +82,9 @@ export default function Experience() {
             {experiences.map((exp, idx) => (
               <div
                 key={idx}
-                ref={(el) => (itemRefs.current[idx] = el!)}
+                ref={(el: HTMLDivElement | null) => {
+                  itemRefs.current[idx] = el;
+                }}
                 className="relative pl-12 sm:pl-32 opacity-0 -translate-x-4 sm:-translate-x-10 transition-all duration-500 ease-out"
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
