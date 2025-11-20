@@ -1,87 +1,122 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from "react";
+import { experiences } from "./common/dummy";
 
 export default function Experience() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [lineHeight, setLineHeight] = useState(0);
+  const itemRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsVisible(true)
-    }, { threshold: 0.1 })
+    const section = document.getElementById("experience");
+    if (!section) return;
 
-    const section = document.getElementById('experience')
-    if (section) observer.observe(section)
-    return () => observer.disconnect()
-  }, [])
+    const handleScroll = () => {
+      const experiencesNodes = itemRefs.current;
+      if (!experiencesNodes.length) return;
 
-  const experiences = [
-    {
-      title: 'Software Development Intern',
-      company: '0101digital',
-      duration: 'Feb 2024 – May 2024',
-      highlights: [
-        'Developed and tested RESTful APIs for scalable web applications using Node.js, Express, and MongoDB',
-        'Collaborated with the QA team to validate backend responses and perform manual testing using Postman',
-        'Contributed to multiple real-world projects, improving data validation and debugging production issues',
-        'Worked in Agile sprints, participating in daily stand-ups, sprint reviews, and retrospectives'
-      ]
-    },
-    {
-      title: 'Data Science Intern',
-      company: 'IBM SkillBuild',
-      duration: 'Nov 2023 – Dec 2023',
-      highlights: [
-        'Participated in a one-month program organized by IBM SkillBuild and CSRBox, gaining foundational knowledge in data science and analytics',
-        'Successfully completed the program and received a certificate of achievement',
-        'Worked on practical data science projects, applying statistical analysis and machine learning techniques to real-world datasets'
-      ]
-    }
-  ]
+      const lastItem = experiencesNodes[experiencesNodes.length - 1];
+      const lastItemBottom = lastItem.getBoundingClientRect().bottom;
+      const windowHeight = window.innerHeight;
+
+      // Calculate progress: from top of section to bottom of last item
+      let progress =
+        (windowHeight - section.getBoundingClientRect().top) /
+        (lastItemBottom - section.getBoundingClientRect().top);
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      setLineHeight(progress * 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // IntersectionObserver for mobile animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-x-0");
+            entry.target.classList.remove(
+              "opacity-0",
+              "-translate-x-4",
+              "sm:-translate-x-10"
+            );
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    itemRefs.current.forEach((ref) => ref && observer.observe(ref));
+
+    return () => {
+      itemRefs.current.forEach((ref) => ref && observer.unobserve(ref));
+    };
+  }, []);
 
   return (
-    <section id="experience" className="py-20 px-4 bg-background">
+    <section
+      id="experience"
+      className="py-20 px-4 bg-background relative overflow-x-visible"
+    >
       <div className="max-w-4xl mx-auto">
-        <h2 className={`text-4xl font-bold mb-16 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Experience
-        </h2>
-        
+        <h2 className="text-4xl font-bold mb-16 text-center">Experience</h2>
+
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-500 to-orange-500" />
-          
-          <div className="space-y-16">
+          {/* Timeline background */}
+          <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-1 bg-gray-300 rounded" />
+
+          {/* Dynamic timeline progress */}
+          <div
+            className="absolute left-6 sm:left-8 top-0 w-1 bg-gradient-to-b from-cyan-500 to-orange-500 rounded transition-all duration-100 ease-out"
+            style={{ height: `${lineHeight}%` }}
+          />
+
+          <div className="space-y-16 sm:space-y-20">
             {experiences.map((exp, idx) => (
-              <div 
+              <div
                 key={idx}
-                className={`relative pl-32 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
-                style={{ transitionDelay: `${idx * 200}ms` }}
+                ref={(el) => (itemRefs.current[idx] = el!)}
+                className="relative pl-12 sm:pl-32 opacity-0 -translate-x-4 sm:-translate-x-10 transition-all duration-500 ease-out"
+                style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                {/* Circular node */}
-                <div className="absolute left-0 w-16 h-16 bg-gradient-to-br from-cyan-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-300">
-                  <div className="w-14 h-14 bg-background rounded-full flex items-center justify-center font-bold text-lg">
+                {/* Node */}
+                <div className="absolute left-0 -top-2 w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-cyan-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <div className="w-10 sm:w-14 h-10 sm:h-14 bg-background rounded-full flex items-center justify-center font-bold text-base sm:text-lg">
                     {idx + 1}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="bg-muted/50 border border-border/50 rounded-lg p-6 hover:border-cyan-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  {/* Date on the right */}
-                  <div className="absolute top-6 right-6">
-                    <p className="text-sm font-semibold text-orange-500">{exp.duration}</p>
+                <div className="bg-muted/50 border border-border/50 rounded-lg p-4 sm:p-6 hover:border-cyan-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative">
+                  {/* Date */}
+                  <p className="text-sm font-semibold text-orange-500 mb-2 sm:mb-0 sm:absolute sm:top-4 sm:right-6">
+                    {exp.duration}
+                  </p>
+
+                  <div className="mb-4 pr-0 sm:pr-40">
+                    <h3 className="text-lg sm:text-xl font-bold text-cyan-500 mb-1">
+                      {exp.title}
+                    </h3>
+                    <p className="text-foreground/80 font-medium">
+                      @{exp.company}
+                    </p>
                   </div>
 
-                  {/* Title and Company */}
-                  <div className="mb-4 pr-40">
-                    <h3 className="text-xl font-bold text-cyan-500 mb-1">{exp.title}</h3>
-                    <p className="text-foreground/80 font-medium">@{exp.company}</p>
-                  </div>
-
-                  {/* Highlights */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3 break-words">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="text-sm text-foreground/70 flex items-start gap-3">
-                        <span className="text-cyan-500 font-bold mt-0.5 flex-shrink-0">•</span>
+                      <li
+                        key={i}
+                        className="text-sm text-foreground/70 flex items-start gap-2 sm:gap-3"
+                      >
+                        <span className="text-cyan-500 font-bold mt-0.5 flex-shrink-0">
+                          •
+                        </span>
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -93,5 +128,5 @@ export default function Experience() {
         </div>
       </div>
     </section>
-  )
+  );
 }
