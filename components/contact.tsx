@@ -46,34 +46,26 @@ export default function Contact() {
         </p>
 
         {/* Social Buttons */}
-        <div className="flex gap-6 justify-center flex-wrap mb-12">
+        <div className="flex gap-6 justify-center flex-wrap mb-1">
           <a
             href="https://linkedin.com/in/krishnendu-sahoo"
             target="_blank"
-            className="px-6 py-3 border border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500/10 hover:scale-110 transition"
+            className="px-1 py-2 w-32 border border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500/10 hover:scale-110 transition"
           >
             Email
           </a>
 
           <a
-            href="https://linkedin.com/in/krishnendu-sahoo"
+            href="https://linkedin.com/in/krishnendusahoo"
             target="_blank"
-            className="px-6 py-3 border border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500/10 hover:scale-110 transition"
+            className="px-1 py-2 w-32 border border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500/10 hover:scale-110 transition"
           >
             LinkedIn
-          </a>
-
-          <a
-            href="https://github.com/iKrishnendu"
-            target="_blank"
-            className="px-6 py-3 border border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500/10 hover:scale-110 transition"
-          >
-            GitHub
           </a>
         </div>
 
         {/* Divider 1 */}
-        <div className="flex items-center gap-4 my-10">
+        <div className="flex items-center gap-4 my-5">
           <div className="flex-1 h-px bg-border/40" />
           <span className="text-sm text-foreground/50">OR</span>
           <div className="flex-1 h-px bg-border/40" />
@@ -82,13 +74,13 @@ export default function Contact() {
         {/* Button to open popup */}
         <button
           onClick={() => setOpenModal(true)}
-          className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 hover:scale-110 transition"
+          className="px-4 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 hover:scale-110 transition"
         >
           Open Contact Form
         </button>
 
         {/* Divider 2 */}
-        <div className="flex items-center gap-4 my-10">
+        <div className="flex items-center gap-4 my-5">
           <div className="flex-1 h-px bg-border/40" />
           <span className="text-sm text-foreground/50">OR</span>
           <div className="flex-1 h-px bg-border/40" />
@@ -96,7 +88,7 @@ export default function Contact() {
 
         {/* Contact info */}
         <p className="text-sm text-foreground/60 mb-1">📞 +91 8927488186</p>
-        <p className="text-sm text-foreground/60">📍 Kolkata, India</p>
+        <p className="text-sm text-foreground/60">📍 Kolkata, WB, India</p>
       </div>
 
       {/* Popup Modal */}
