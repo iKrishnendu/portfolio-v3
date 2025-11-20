@@ -36,7 +36,7 @@ export default function SimpleRippleCard({
         onClick={handleClick}
         className="
           relative overflow-hidden
-           p-1 px-2
+           p-1
           rounded-xl bg-background/70 backdrop-blur-sm 
           shadow border border-border/40
           text-left text-sm text-foreground/70 cursor-pointer

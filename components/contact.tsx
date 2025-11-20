@@ -40,13 +40,13 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
 
-        <p className="text-lg text-foreground/70 mb-8">
+        <p className="text-md text-foreground/70 mb-8">
           I'm always open to opportunities, collaborations, and interesting
           conversations.
         </p>
 
         {/* Social Buttons */}
-        <div className="flex gap-6 justify-center flex-wrap mb-12">
+        <div className="flex gap-6 justify-center flex-wrap mb-4">
           <a
             href="https://linkedin.com/in/krishnendu-sahoo"
             target="_blank"
@@ -73,7 +73,7 @@ export default function Contact() {
         </div>
 
         {/* Divider 1 */}
-        <div className="flex items-center gap-4 my-10">
+        <div className="flex items-center gap-4 my-4">
           <div className="flex-1 h-px bg-border/40" />
           <span className="text-sm text-foreground/50">OR</span>
           <div className="flex-1 h-px bg-border/40" />
@@ -88,7 +88,7 @@ export default function Contact() {
         </button>
 
         {/* Divider 2 */}
-        <div className="flex items-center gap-4 my-10">
+        <div className="flex items-center my-4">
           <div className="flex-1 h-px bg-border/40" />
           <span className="text-sm text-foreground/50">OR</span>
           <div className="flex-1 h-px bg-border/40" />

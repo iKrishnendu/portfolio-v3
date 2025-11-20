@@ -77,13 +77,11 @@ export default function Home() {
         <section className="snap-start">
           <Experience />
         </section>
-        <section className="snap-start">
+        <section className="snap-start h-screen md:h-auto">
           <Projects />
         </section>
         <section className="snap-start">
           <Contact />
-        </section>
-        <section className="snap-start">
           <Footer />
         </section>
       </main>

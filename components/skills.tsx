@@ -58,9 +58,10 @@ export default function Skills() {
           Skills & Expertise
         </h2>
         <SimpleRippleCard
-          title="Upcoming Projects"
-          description="Tap to see what’s coming next"
+          title="Projects"
+          description="Tap to jump on that section"
           id="projects"
+          clasName="mb-3"
         />
 
         {/* MOBILE */}
