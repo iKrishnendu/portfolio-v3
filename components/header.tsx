@@ -28,7 +28,7 @@ export default function Header({
 
   const confirmDownload = () => {
     const link = document.createElement("a");
-    link.href = "/Krishnendu_Sahoo_Resume.pdf"; // place resume in public folder
+    link.href = "/Krishnendu_Sahoo_Resume.pdf";
     link.download = "Krishnendu_Sahoo_Resume.pdf";
     link.click();
     setIsPopupOpen(false);
