@@ -15,6 +15,12 @@ import {
   SiVercel,
   SiFirebase,
   SiLinux,
+  SiPhp,
+  SiAngular,
+  SiDotnet,
+  SiMediapipe,
+  SiSelenium,
+  SiDocker,
 } from "react-icons/si";
 import { TbCompass } from "react-icons/tb";
 import { BiTestTube } from "react-icons/bi";
@@ -32,23 +38,29 @@ export const skills: Record<
     { name: "TypeScript", Icon: SiTypescript },
     { name: "Java", Icon: FaJava },
     { name: "SQL", Icon: SiMysql },
+    { name: "PHP", Icon: SiPhp },
   ],
+
   Frameworks: [
     { name: "React.js", Icon: SiReact },
+    { name: "Angular", Icon: SiAngular },
     { name: "Node.js", Icon: SiNodedotjs },
     { name: "Express", Icon: SiExpress },
     { name: "Tailwind CSS", Icon: SiTailwindcss },
     { name: "Material UI", Icon: SiMui },
-    { name: "MongoDB", Icon: SiMongodb },
+    { name: ".NET", Icon: SiDotnet },
   ],
+
   "QA Testing": [
     { name: "Manual Testing", Icon: AiOutlineEdit },
     { name: "Smoke & Regression", Icon: BiTestTube },
-    { name: "Compatibility", Icon: TbCompass },
-    { name: "Exploratory", Icon: BiTestTube },
-    { name: "Usability", Icon: AiOutlineEdit },
+    { name: "Compatibility Testing", Icon: TbCompass },
+    { name: "Exploratory Testing", Icon: BiTestTube },
+    { name: "API Testing", Icon: SiMediapipe },
     { name: "Test Case Design", Icon: AiOutlineEdit },
+    { name: "Selenium", Icon: SiSelenium },
   ],
+
   Tools: [
     { name: "Git", Icon: SiGit },
     { name: "Postman", Icon: SiPostman },
@@ -56,10 +68,22 @@ export const skills: Record<
     { name: "Firebase", Icon: SiFirebase },
     { name: "Linux", Icon: SiLinux },
     { name: "MongoDB Compass", Icon: TbCompass },
+    { name: "Docker", Icon: SiDocker },
   ],
 };
 
 export const experiences = [
+  {
+    title: "Software Developer",
+    company: "Cordiia Software Technologies",
+    duration: "Dec 2025 – Present",
+    highlights: [
+      "Developing full-stack web applications using MEAN and MERN stack following industry-standard practices",
+      "Building and maintaining backend systems using PHP with clean, scalable, and well-structured code",
+      "Working with .NET technologies for application development and future project requirements",
+      "Developing and supporting web-based tools (WBT) with a focus on performance, stability, and code quality",
+    ],
+  },
   {
     title: "Software Development Intern",
     company: "0101digital",
@@ -108,7 +132,7 @@ export const projects = [
     description:
       "Full MERN stack application with user, doctor, and admin modules. Implemented secure JWT authentication, appointment booking system, and admin CRUD operations.",
     tags: ["React.js", "Node.js", "Express", "MongoDB", "JWT", "Vercel"],
-    liveUrl: "",
+    liveUrl: "2025",
     githubUrl: "",
     madeAt: "Personal",
     duration: "June – July 2025",
@@ -116,11 +140,23 @@ export const projects = [
   },
 
   {
+    title: "Sahoo | Portfolio Website",
+    description:
+      "Personal portfolio website showcasing skills, projects, and experience with smooth animations and responsive design.",
+    tags: ["React", "JavaScript", "Tailwind", "Firebase"],
+    liveUrl: "https://sahoo.vercel.app",
+    githubUrl: "https://github.com/iKrishnendu/portfolio",
+    madeAt: "Personal",
+    duration: "2021 - Ongoing (Version 3)",
+    icon: "💻",
+  },
+
+  {
     title: "ODOP E-Commerce Solution",
     description:
       "Built for SIH 2023 hackathon, an e-commerce platform promoting One District One Product for Jammu & Kashmir. Achieved 6th place in internal hackathon.",
     tags: ["React", "Node.js", "MongoDB", "E-Commerce", "Hackathon"],
-    liveUrl: "",
+    liveUrl: "2023",
     githubUrl: "",
     madeAt: "Hackathon",
     duration: "SIH 2023",
@@ -132,25 +168,12 @@ export const projects = [
     description:
       "A full stack web application using MERN stack for blogging. Implemented user authentication, post creation, image uploads, and responsive design.",
     tags: ["MERN", "JavaScript", "Tailwind", "Cloudinary"],
-    liveUrl: "https://sahoo.vercel.app/blog",
+    liveUrl: "https://sahoo-blog.vercel.app/",
     githubUrl: "https://github.com/iKrishnendu/sahoo-blog",
     madeAt: "Personal",
-    duration: "-",
+    duration: "2023",
     icon: "📝",
   },
-
-  {
-    title: "Sahoo | Portfolio Website",
-    description:
-      "Personal portfolio website showcasing skills, projects, and experience with smooth animations and responsive design.",
-    tags: ["React", "JavaScript", "Tailwind", "Firebase"],
-    liveUrl: "https://sahoo.vercel.app",
-    githubUrl: "https://github.com/iKrishnendu/portfolio",
-    madeAt: "Personal",
-    duration: "-",
-    icon: "💻",
-  },
-
   {
     title: "GitHub API Project",
     description:
@@ -159,7 +182,7 @@ export const projects = [
     liveUrl: "https://the-github-api.vercel.app/",
     githubUrl: "https://github.com/iKrishnendu/github-api",
     madeAt: "Personal",
-    duration: "-",
+    duration: "2022",
     icon: "🔎",
   },
 
@@ -172,7 +195,7 @@ export const projects = [
       "https://github.com/iKrishnendu/speed-test-chrome-extension/blob/main/README.md",
     githubUrl: "https://github.com/iKrishnendu/speed-test-chrome-extension",
     madeAt: "Personal",
-    duration: "-",
+    duration: "2021",
     icon: "⚡",
   },
 
@@ -184,22 +207,9 @@ export const projects = [
     liveUrl: "",
     githubUrl: "https://github.com/iKrishnendu/splitmate",
     madeAt: "Personal",
-    duration: "-",
+    duration: "2022",
     icon: "💸",
   },
-
-  {
-    title: "Spot AI",
-    description:
-      "A complete directory of over 1000+ AI tools with search, filtering, categories, and server-side rendering.",
-    tags: ["Next.js", "TypeScript", "Node", "Express"],
-    liveUrl: "https://spotai.tech/",
-    githubUrl: "",
-    madeAt: "Professional",
-    duration: "-",
-    icon: "🤖",
-  },
-
   {
     title: "GreenCycle – Smart Waste Management",
     description:
@@ -217,68 +227,8 @@ export const projects = [
     ],
     liveUrl: "",
     githubUrl: "",
-    madeAt: "College Project",
+    madeAt: "Personal",
     duration: "2024",
     icon: "♻️",
-  },
-
-  {
-    title: "Video Platform",
-    description:
-      "End-to-end video streaming platform with uploads, compression, comments, likes, and watch history.",
-    tags: ["MERN", "FFmpeg", "Node.js", "MongoDB"],
-    liveUrl: "",
-    githubUrl: "",
-    madeAt: "Personal",
-    duration: "2023 – 2024",
-    icon: "📺",
-  },
-
-  {
-    title: "Job Hiring Platform",
-    description:
-      "Job portal with recruiter dashboard, role management, applicant tracking system, and resume parsing.",
-    tags: ["Next.js", "Node.js", "Express", "MongoDB", "Tailwind"],
-    liveUrl: "",
-    githubUrl: "",
-    madeAt: "Personal",
-    duration: "2024",
-    icon: "💼",
-  },
-
-  {
-    title: "AI Tools Listing Platform",
-    description:
-      "Directory of 300+ AI tools with category filtering, search, and clean UI.",
-    tags: ["Next.js", "TypeScript", "Tailwind"],
-    liveUrl: "",
-    githubUrl: "",
-    madeAt: "Personal",
-    duration: "2024",
-    icon: "🧠",
-  },
-
-  {
-    title: "Charity Donation System",
-    description:
-      "Donation platform using secure Razorpay integration with donor dashboard and live donation tracking.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Razorpay"],
-    liveUrl: "",
-    githubUrl: "",
-    madeAt: "Personal",
-    duration: "2024",
-    icon: "❤️",
-  },
-
-  {
-    title: "End-to-End Encrypted Finance System",
-    description:
-      "A secure finance tracker with AES encrypted data, JWT authentication, and analytics dashboard.",
-    tags: ["Node.js", "React", "MongoDB", "Encryption"],
-    liveUrl: "",
-    githubUrl: "",
-    madeAt: "Personal",
-    duration: "2023",
-    icon: "🔐",
   },
 ];

@@ -83,7 +83,7 @@ export default function ProjectTablePage() {
                   <td className="p-4 border font-medium">{proj.title}</td>
 
                   {/* Description */}
-                  <td className="p-4 border text-sm text-gray-700">
+                  <td className="p-4 border text-sm text-gray-500">
                     {proj.description}
                   </td>
 
@@ -102,10 +102,10 @@ export default function ProjectTablePage() {
                   </td>
 
                   {/* Made At */}
-                  <td className="p-4 border text-sm">{proj.madeAt || "-"}</td>
+                  <td className="p-4 border text-sm text-gray-500">{proj.madeAt || "-"}</td>
 
                   {/* Duration */}
-                  <td className="p-4 border text-sm">{proj.duration || "-"}</td>
+                  <td className="p-4 border text-sm text-gray-500">{proj.duration || "-"}</td>
 
                   {/* Links */}
                   <td className="p-4 flex gap-3 text-sm">
