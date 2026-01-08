@@ -74,7 +74,7 @@ export default function Experience() {
 
           {/* Dynamic timeline progress */}
           <div
-            className="absolute left-6 sm:left-8 top-0 w-1 bg-gradient-to-b from-cyan-500 to-orange-500 rounded transition-all duration-100 ease-out"
+            className="absolute left-6 sm:left-8 top-0 w-1 bg-linear-to-b from-cyan-500 to-orange-500 rounded transition-all duration-100 ease-out"
             style={{ height: `${lineHeight}%` }}
           />
 
@@ -96,14 +96,14 @@ export default function Experience() {
                 </div>
 
                 {/* Content */}
-                <div className="bg-muted/50 border border-border/50 rounded-lg p-4 sm:p-6 hover:border-cyan-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative">
+                <div className="bg-muted/50 border border-border/50 rounded-lg p-4 sm:p-6 hover:border-orange-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative">
                   {/* Date */}
                   <p className="text-sm font-semibold text-orange-500 mb-2 sm:mb-0 sm:absolute sm:top-4 sm:right-6">
                     {exp.duration}
                   </p>
 
                   <div className="mb-4 pr-0 sm:pr-40">
-                    <h3 className="text-lg sm:text-xl font-bold text-cyan-500 mb-1">
+                    <h3 className="text-lg sm:text-xl font-bold text-orange-500 mb-1">
                       {exp.title}
                     </h3>
                     <p className="text-foreground/80 font-medium">
